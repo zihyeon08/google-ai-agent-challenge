@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>베이스볼 마스터즈 - 야구 굿즈 쇼핑몰</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#1d4ed8',   // Main Color: Navy Blue
+                        accent: '#ef4444', // Accent Color: Red
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased overflow-x-hidden">
+
+    <!-- 1. Navigation Bar (Sticky) -->
+    <nav class="fixed w-full z-50 glass shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex-shrink-0 flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-navy text-white rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform shadow-lg shadow-navy/30">
+                        <i class="fa-solid fa-baseball"></i>
+                    </div>
+                    <span class="font-black text-2xl tracking-tighter text-navy uppercase">Baseball Masters</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-10">
+                    <a href="#home" class="text-gray-700 hover:text-navy font-bold transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-navy hover:after:w-full after:transition-all">홈페이지</a>
+                    <a href="#products" class="text-gray-700 hover:text-navy font-bold transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-navy hover:after:w-full after:transition-all">제품</a>
+                    <a href="#story" class="text-gray-700 hover:text-navy font-bold transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-navy hover:after:w-full after:transition-all">스토리</a>
+                    <a href="#contact" class="text-gray-700 hover:text-navy font-bold transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-navy hover:after:w-full after:transition-all">문의</a>
+                </div>
+
+                <!-- Utilities (Search, Cart) -->
+                <div class="flex items-center space-x-6">
+                    <button class="text-gray-500 hover:text-accent transition-colors transform hover:scale-110">
+                        <i class="fa-solid fa-search text-xl"></i>
+                    </button>
+                    <button class="text-gray-500 hover:text-accent transition-colors relative transform hover:scale-110">
+                        <i class="fa-solid fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 bg-accent text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full border border-white">2</span>
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden text-gray-500 hover:text-navy focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section id="home" class="relative pt-20 pb-32 lg:pt-32 lg:pb-48 bg-navy overflow-hidden min-h-[90vh] flex items-center">
+        <!-- Background Placeholder with Gradient & Image -->
+        <div class="absolute inset-0">
+            <!-- Unsplash Baseball Image Placeholder -->
+            <img src="./Gemini_Generated_Image_lc9y9blc9y9blc9y.png" alt="Baseball Stadium Background" class="w-full h-full object-cover opacity-40 mix-blend-overlay">
+            <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white w-full z-10">
+            <div class="max-w-3xl animate-[fadeIn_1s_ease-out]">
+                <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-accent/20 border border-accent/50 text-white text-sm font-bold tracking-wider uppercase mb-8 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                    2024 Season New Arrivals
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-[1.1] tracking-tight text-white drop-shadow-lg">
+                    내 손안의 작은 경기장,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">베이스볼 마스터즈</span>
+                </h1>
+                <p class="text-lg md:text-xl text-blue-100 mb-10 max-w-2xl font-light leading-relaxed">
+                    프로 선수들이 선택한 최상의 장비부터 팬들을 위한 공식 라이선스 굿즈까지. 당신의 야구 열정을 완벽하게 채워줄 프리미엄 장비를 만나보세요.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#products" class="px-8 py-4 bg-accent hover:bg-red-600 text-white font-bold rounded-xl text-center transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(239,68,68,0.3)] flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-cart-shopping"></i> 쇼핑 시작하기
+                    </a>
+                    <a href="#story" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold rounded-xl text-center transition-all duration-300 flex items-center justify-center">
+                        브랜드 스토리 보기
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Decorative Icon -->
+        <div class="absolute -bottom-20 -right-20 opacity-[0.03] transform rotate-12 pointer-events-none">
+            <i class="fa-solid fa-baseball text-[40rem]"></i>
+        </div>
+    </section>
+
+    <!-- 3. Features Section -->
+    <section class="py-24 bg-white relative z-20">
+        <!-- Floating overlapping card effect -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-40 relative z-30">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-gray-100 hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-navy to-blue-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-navy/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-medal text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">프리미엄 퀄리티</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">
+                        최고급 소재와 정밀한 공정으로 제작되어 프로 선수 수준의 뛰어난 내구성과 최적의 퍼포먼스를 보장합니다.
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-3xl p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-gray-100 hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-red-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bolt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">로켓 빠른 배송</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">
+                        오후 2시 이전 주문 시 당일 출고 원칙. 내일 당장 경기장에 가야 하는 당신을 위해 가장 빠르게 달려갑니다.
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-3xl p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-gray-100 hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-navy to-blue-600 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-navy/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-certificate text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">공식 라이선스</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">
+                        그리즐리스(Grizzlies), 타이탄스(Titans), 메테오스(Meteors) 등 가상의 명문 구단 공식 라이선스 계약을 통해 100% 정품만을 취급합니다. 안심하고 뜨겁게 응원하세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Products Section -->
+    <section id="products" class="py-24 bg-gray-50 border-t border-gray-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="w-8 h-1 bg-accent rounded-full"></span>
+                        <h2 class="text-accent font-bold tracking-widest uppercase text-sm">Best Equipment</h2>
+                    </div>
+                    <h3 class="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">인기 굿즈 라인업</h3>
+                </div>
+                <a href="#" class="inline-flex items-center gap-2 text-navy font-bold hover:text-accent transition-colors pb-2">
+                    전체 상품 보기 <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product 1: Baseball Bat -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-72 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="./Gemini_Generated_Image_dwzyzsdwzyzsdwzy.png" alt="Pro Maple Bat" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-700">
+                        <!-- Overlay -->
+                        <div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors"></div>
+                        <!-- Badge -->
+                        <div class="absolute top-5 left-5 bg-navy text-white text-xs font-black tracking-wider px-3 py-1.5 rounded-lg z-10 shadow-lg">
+                            BEST
+                        </div>
+                        <!-- Add to Cart Action -->
+                        <div class="absolute -bottom-16 right-5 group-hover:bottom-5 transition-all duration-300 z-10">
+                            <button class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transform hover:scale-110 transition-all">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <span class="text-xs text-gray-400 ml-1 font-medium">(128)</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-2">프로 하드 메이플 우드 배트</h4>
+                        <p class="text-sm text-gray-500 mb-6 flex-grow">엘리트 선수용 최고급 북미산 하드 메이플 적용. 최적의 반발력과 밸런스.</p>
+                        <div class="flex justify-between items-end mt-auto">
+                            <span class="font-black text-2xl text-navy">189,000<span class="text-sm text-gray-500 font-normal ml-1">원</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Glove -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-72 bg-gray-100 flex items-center justify-center overflow-hidden">
+                         <img src="./Gemini_Generated_Image_lc9y9blc9y9blc9y.png" alt="Premium Glove" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors"></div>
+                        <div class="absolute top-5 left-5 bg-accent text-white text-xs font-black tracking-wider px-3 py-1.5 rounded-lg z-10 shadow-lg">
+                            HOT
+                        </div>
+                        <div class="absolute -bottom-16 right-5 group-hover:bottom-5 transition-all duration-300 z-10">
+                            <button class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transform hover:scale-110 transition-all">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star-half-stroke text-yellow-400 text-xs"></i>
+                            <span class="text-xs text-gray-400 ml-1 font-medium">(342)</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-2">시그니처 내야수 글러브</h4>
+                        <p class="text-sm text-gray-500 mb-6 flex-grow">프리미엄 스티어하이드 가죽 사용. 빠르고 정확한 포구를 위한 얕은 패턴.</p>
+                        <div class="flex justify-between items-end mt-auto">
+                            <span class="font-black text-2xl text-navy">245,000<span class="text-sm text-gray-500 font-normal ml-1">원</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Uniform -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-72 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <!-- Fallback using icon and background if image is not perfect for uniforms -->
+                        <div class="absolute inset-0 bg-gray-200/50"></div>
+                        <img src="./Gemini_Generated_Image_yvkzykyvkzykyvkz.png" alt="Official Uniform" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors"></div>
+                        <div class="absolute top-5 left-5 bg-gray-900 text-white text-xs font-black tracking-wider px-3 py-1.5 rounded-lg z-10 shadow-lg">
+                            NEW
+                        </div>
+                        <div class="absolute -bottom-16 right-5 group-hover:bottom-5 transition-all duration-300 z-10">
+                            <button class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transform hover:scale-110 transition-all">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <span class="text-xs text-gray-400 ml-1 font-medium">(89)</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-2">어센틱 홈 유니폼</h4>
+                        <p class="text-sm text-gray-500 mb-6 flex-grow">선수단 실제 착용 동일 스펙. 원하는 선수 및 커스텀 백넘버 마킹 가능.</p>
+                        <div class="flex justify-between items-end mt-auto">
+                            <span class="font-black text-2xl text-navy">119,000<span class="text-sm text-gray-500 font-normal ml-1">원</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Commemorative Ball -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 group border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-72 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <img src="./Gemini_Generated_Image_dwzyzsdwzyzsdwzy.png" alt="Commemorative Ball" class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors"></div>
+                        <div class="absolute -bottom-16 right-5 group-hover:bottom-5 transition-all duration-300 z-10">
+                            <button class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transform hover:scale-110 transition-all">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-center gap-1 mb-3">
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                            <span class="text-xs text-gray-400 ml-1 font-medium">(512)</span>
+                        </div>
+                        <h4 class="font-bold text-xl text-gray-900 mb-2">KBO 공식 공인구</h4>
+                        <p class="text-sm text-gray-500 mb-6 flex-grow">KBO 정규시즌 실제 사용 공인구. 기념용 투명 케이스 포함.</p>
+                        <div class="flex justify-between items-end mt-auto">
+                            <span class="font-black text-2xl text-navy">25,000<span class="text-sm text-gray-500 font-normal ml-1">원</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Story / Banner Section (Optional bonus section to fill out the page) -->
+    <section id="story" class="py-24 bg-navy relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <i class="fa-solid fa-quote-left text-4xl text-accent/50 mb-6"></i>
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-8 leading-tight">
+                단순한 장비가 아닌,<br>당신의 <span class="text-accent">열정을 완성</span>하는 조각
+            </h2>
+            <p class="text-blue-100 max-w-3xl mx-auto text-lg font-light mb-10">
+                베이스볼 마스터즈는 2010년부터 야구를 사랑하는 모든 이들에게 최고의 경험을 제공하기 위해 노력해왔습니다. 우리는 그라운드 위에서 흘리는 땀방울의 가치를 알기에, 단 하나의 타협 없는 품질만을 고집합니다.
+            </p>
+            <a href="#" class="inline-flex items-center gap-2 px-8 py-3 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-navy transition-colors">
+                브랜드 스토리 더보기 <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer id="contact" class="bg-gray-900 text-gray-300 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <!-- Brand Info -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6 group">
+                        <div class="w-8 h-8 bg-accent text-white rounded flex items-center justify-center">
+                            <i class="fa-solid fa-baseball text-sm"></i>
+                        </div>
+                        <span class="font-black text-xl text-white tracking-tighter uppercase">Baseball Masters</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 max-w-sm font-light leading-relaxed">
+                        최고의 야구 장비와 공식 굿즈로 여러분의 야구 열정을 응원합니다. 프로의 선택, 베이스볼 마스터즈.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#E1306C] text-white transition-colors transform hover:-translate-y-1"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#FF0000] text-white transition-colors transform hover:-translate-y-1"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#1DA1F2] text-white transition-colors transform hover:-translate-y-1"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <!-- CS Center -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-sm border-b border-gray-800 pb-2">고객 센터</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><span class="font-black text-2xl text-white">1588-0000</span></li>
+                        <li class="font-light">평일 10:00 - 17:00<br>(점심시간 12:00 - 13:00)</li>
+                        <li><a href="#" class="hover:text-white transition-colors flex items-center gap-2"><i class="fa-regular fa-envelope"></i> 1:1 문의하기</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policies -->
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-sm border-b border-gray-800 pb-2">법적 고지</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">이용약관</a></li>
+                        <li><a href="#" class="text-white font-bold hover:text-accent transition-colors">개인정보처리방침</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">취소 및 환불 규정</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">대량 구매 문의</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-16 pt-8 text-sm text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2024 Baseball Masters. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <i class="fa-brands fa-cc-visa text-3xl opacity-50 hover:opacity-100 transition-opacity"></i>
+                    <i class="fa-brands fa-cc-mastercard text-3xl opacity-50 hover:opacity-100 transition-opacity"></i>
+                    <i class="fa-brands fa-cc-paypal text-3xl opacity-50 hover:opacity-100 transition-opacity"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple Script for Navbar shadow on scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
