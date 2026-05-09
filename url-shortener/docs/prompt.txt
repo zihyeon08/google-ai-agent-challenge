@@ -1,0 +1,45 @@
+# URL Shortener 개발 프롬프트 기록 (Prompt Log)
+
+이 문서는 LLM을 활용하여 TDD(Test-Driven Development) 기반으로 URL Shortener 프로젝트를 개발하는 과정에서 사용된 프롬프트들의 기록입니다.
+
+## Step 1: 프로젝트 초기화 및 테스트 환경 구성
+**Prompt:**
+> "Next.js (App Router, TypeScript, Tailwind CSS) 기반의 새로운 프로젝트 `url-shortener`를 생성해줘. 그 후, TDD 사이클을 진행할 수 있도록 Jest와 React Testing Library를 설치하고 `jest.config.js` 및 `jest.setup.ts` 설정을 완료해줘. 특히 Next.js 환경에서 `nanoid` 패키지를 사용할 때 발생할 수 있는 ESM 관련 모듈 매핑 설정도 잊지 말고 추가해줘."
+
+## Step 2: 도메인 레이어 및 InMemory DB Mocking
+**Prompt:**
+> "DB 없이 메모리에서 동작하는 Mocking 환경을 만들기 위해 `UrlRepository` 인터페이스와 `InMemoryUrlRepository` 클래스를 구현해줘. 저장할 데이터 모델은 식별자(`id`), 원본 URL(`originalUrl`), 생성 시간(`createdAt`), 접근 횟수(`accessCount`)를 포함하는 `UrlRecord` 타입으로 정의해줘. 서비스 레이어에서 이 Repository를 사용할 수 있도록 싱글톤 인스턴스를 하나 export 해줘."
+
+## Step 3: URL 단축 기능 TDD (Red 단계 - 테스트 작성)
+**Prompt:**
+> "`UrlService.test.ts` 파일을 생성하고 `shortenUrl` 메서드에 대한 테스트 코드를 작성해줘.
+> 1. 유효한 URL을 넣었을 때 6~8자리의 랜덤 식별자(Short Key)가 반환되는지 테스트해.
+> 2. `invalid-url` 같은 잘못된 URL을 넣으면 `InvalidUrlException`을 던지는지 확인해.
+> 3. 이미 등록된 동일한 긴 URL을 넣었을 때 새로운 키가 아닌 기존 키를 반환(멱등성)하는지 테스트해."
+
+## Step 4: URL 단축 기능 구현 (Green 단계 - 테스트 통과)
+**Prompt:**
+> "앞서 작성한 테스트 코드를 통과하도록 `UrlService.ts`에 `shortenUrl` 로직을 구현해줘. `nanoid`를 활용하여 Short Key를 생성하고, `URL` 객체를 사용하여 URL 형식을 검증해야 해. 이미 존재하는 URL이라면 Repository의 `findByOriginalUrl`로 확인해서 기존 ID를 반환해줘."
+
+## Step 5: 리다이렉트 및 TTL 검증 TDD (Red 단계 - 테스트 작성)
+**Prompt:**
+> "`UrlService.test.ts`에 원본 URL을 조회하는 `getOriginalUrl` 메서드 테스트 코드를 추가해줘.
+> 1. 정상적인 Short Key를 입력하면 매핑된 원본 URL을 반환하고, 접근 횟수(accessCount)가 1 증가하는지 확인해.
+> 2. 존재하지 않는 Short Key를 입력하면 `NotFoundException`을 던져.
+> 3. 24시간이 지난 Short Key로 접근하면 `ExpiredException`을 던지도록 해. (Jest의 `useFakeTimers`를 활용하여 시간을 조작해서 테스트해줘.)"
+
+## Step 6: 리다이렉트 및 TTL 검증 구현 (Green 단계 - 테스트 통과)
+**Prompt:**
+> "이제 테스트를 통과하도록 `UrlService`에 `getOriginalUrl` 메서드를 구현해줘. Repository에서 데이터를 찾은 후, 현재 시간과 `createdAt`을 비교하여 24시간(TTL)이 넘었는지 확인하는 방어 로직을 작성하고 통과한 경우에만 `incrementAccessCount`를 호출해서 카운트를 올려줘."
+
+## Step 7: API Route Handlers 구현 (Controller Layer)
+**Prompt:**
+> "작성된 `UrlService`를 활용하여 프론트엔드와 통신할 API Route를 만들어줘.
+> - `app/api/shorten/route.ts` (POST): 긴 URL을 입력받아 `shortenUrl`을 호출하고 최종 단축 URL(`http://localhost:3000/[shortId]`)을 반환해.
+> - `app/[shortId]/route.ts` (GET): URL 파라미터에서 `shortId`를 읽어 원본 URL을 가져온 뒤, `NextResponse.redirect`로 301 이동시켜. 예외 발생 시 알맞은 HTTP 상태 코드를 반환하도록 해."
+
+## Step 8: 프리미엄 UI 프레젠테이션 레이어 구성
+**Prompt:**
+> "`app/page.tsx`를 수정하여 단일 페이지 UI를 만들어줘.
+> Tailwind CSS를 사용하여 다크 모드, Glassmorphism, 부드러운 그라데이션 및 로딩 스피너 등의 프리미엄 디자인(Rich Aesthetics)을 적용해줘.
+> 긴 URL을 입력하고 '축약하기'를 누르면 `/api/shorten`을 호출하여 결과를 하단에 표시하고, 클립보드 'Copy' 버튼을 함께 제공해."
